@@ -7,6 +7,7 @@
  */
 
 import React, {Fragment} from 'react';
+import { Provider } from 'mobx-react'
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,100 +16,129 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-
 import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  NavigationScreenOptions,
+  NavigationScreenProp,
+  createAppContainer,
+  createSwitchNavigator,
+  NavigationTabScreenOptions
+} from "react-navigation";
+import { createStackNavigator } from 'react-navigation-stack'
+import LoginScreen from './src/screens/LoginScreen'
+import RegisterScreen from './src/screens/RegisterScreen'
+import HomeScreen from './src/screens/HomeScreen'
+import stores from './src/stores';
 
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
-};
+class App extends React.Component{
+  componentDidMount = async () => {
+    if (Platform.OS === "android") {
+      const readStoragePerm = await PermissionsAndroid.check(
+        "android.permission.READ_EXTERNAL_STORAGE"
+      )
+      if (!readStoragePerm) {
+        await PermissionsAndroid.request(
+          "android.permission.READ_EXTERNAL_STORAGE"
+        ).then(res => {
+          if (res === "denied" || res === "never_ask_again") {
+            BackHandler.exitApp();
+          }
+        })
+      }
+      const writeStoragePerm = await PermissionsAndroid.check(
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      );
+      if (!writeStoragePerm) {
+        await PermissionsAndroid.request(
+          "android.permission.WRITE_EXTERNAL_STORAGE"
+        ).then(res => {
+          if (res === "denied" || res === "never_ask_again") {
+            BackHandler.exitApp();
+          }
+        })
+      }
+    }
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+    const netInfo = await NetInfo.isConnected.fetch();
+
+    !netInfo &&
+    Alert.alert(
+      "알림",
+      "인터넷이 연결되어 있지 않습니다.\n앱을 종료합니다.",
+      [{ text: "확인", onPress: () => BackHandler.exitApp() }],
+      { cancelable: false }
+    )
+  }
+  
+  render() {
+    return (
+      <Provider {...stores}>
+        <AppContainer />
+      </Provider>
+    )
+  }
+}
+
+const LoginStack = createStackNavigator(
+  {
+    Login: { screen: LoginScreen },
+    Register : { screen: RegisterScreen }
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  {
+    defaultNavigationOptions: ({
+      headerStyle: {
+        elevation: 0,
+        shadowOffset: { height: 0, width: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        backgroundColor: '#fff',
+        shadowColor: "transparent"
+      }
+    })
+  }
+)
+
+const HomeStack = createStackNavigator(
+  {
+    Home: { screen: HomeScreen }
   },
-  body: {
-    backgroundColor: Colors.white,
+  {
+    defaultNavigationOptions: ({
+      headerStyle: {
+        elevation: 0,
+        shadowOffset: { height: 0, width: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        backgroundColor: '#fff',
+        shadowColor: "transparent"
+      }
+    })
+  }
+)
+
+const MainStack = createStackNavigator(
+  {
+    Home: { screen: HomeStack },
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+  {
+    defaultNavigationOptions: ({
+      headerStyle: {
+        elevation: 0,
+        shadowOffset: { height: 0, width: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        shadowColor: "transparent"
+      }
+    })
+  }
+)
+
+const MainSwitch = createSwitchNavigator({
+  Login: LoginStack,
+  Home: MainStack
+})
+
+const AppContainer = createAppContainer(MainSwitch);
 
 export default App;
