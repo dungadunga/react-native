@@ -22,6 +22,7 @@ yarn install
 ```sh
 react-native run-android
 ```
+
 # Usage iOS
 
 ```sh
