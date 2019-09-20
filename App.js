@@ -86,6 +86,7 @@ const LoginStack = createStackNavigator(
   {
     defaultNavigationOptions: ({
       headerStyle: {
+        height: 0,
         elevation: 0,
         shadowOffset: { height: 0, width: 0 },
         shadowOpacity: 0,
@@ -104,6 +105,7 @@ const HomeStack = createStackNavigator(
   {
     defaultNavigationOptions: ({
       headerStyle: {
+        height: 0,
         elevation: 0,
         shadowOffset: { height: 0, width: 0 },
         shadowOpacity: 0,
@@ -122,6 +124,7 @@ const MainStack = createStackNavigator(
   {
     defaultNavigationOptions: ({
       headerStyle: {
+        height: 0,
         elevation: 0,
         shadowOffset: { height: 0, width: 0 },
         shadowOpacity: 0,
