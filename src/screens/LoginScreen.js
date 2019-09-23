@@ -1,127 +1,184 @@
 import React from 'react'
+import {
+  View,
+  SafeAreaView,
+  Image,
+  Text,
+  TouchableOpacity,
+  TouchableHighlight
+} from 'react-native'
 
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import RegisterScreen from './RegisterScreen'
+
+import ModalComponent from '../components/Modal'
+import ButtonComponent from '../components/Button'
 
 import { IMAGE_LOGIN_LOGO } from '../constants/image'
-import { COLOR_MAIN, COLOR_SHADOW, COLOR_TEXT_GOOGLE, COLOR_FACEBOOK, COLOR_WHITE } from '../constants/color'
+import {
+  COLOR_MAIN,
+  COLOR_TEXT_GOOGLE,
+  COLOR_FACEBOOK,
+  COLOR_WHITE_SHADOW,
+  COLOR_WHITE,
+  COLOR_TRANSPARENT,
+  COLOR_FACEBOOK_SHADOW,
+  COLOR_MAIN_SHADOW
+} from '../constants/color'
+import { width, height } from '../constants/size'
 
 class LoginScreen extends React.Component{
+  constructor(props) {
+    super(props)
+
+    this.renderRegister = this.renderRegister.bind(this)
+    this.renderRegisterModal = this.renderRegisterModal.bind(this)
+    this.receiveGoogleCallback = this.receiveGoogleCallback.bind(this)
+    this.receiveFacebookCallback = this.receiveFacebookCallback.bind(this)
+    this.receiveEmailCallback = this.receiveEmailCallback.bind(this)
+  }
+
+  state = {
+    isVisibleRegister: false,
+    isVisibleLogin: false
+  }
+
+  renderRegister = () => <RegisterScreen />
+  renderLogin = () =>  <RegisterScreen />
+
+  renderRegisterModal = () => {
+    this.setState({
+      isVisibleRegister: false
+    }, () => this.setState({
+      isVisibleRegister: true
+    }))
+  }
+
+  receiveGoogleCallback = (event) => {
+    console.log(event)
+  }
+
+  receiveFacebookCallback = (event) => {
+    console.log(event)
+  }
+
+  receiveEmailCallback = (event) => {
+    this.setState({
+      isVisibleLogin: false
+    }, () => this.setState({
+      isVisibleLogin: true
+    }))
+  }
+  
   render() {
+    const { isVisibleLogin, isVisibleRegister } = this.state;
     return (
-      <View style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        marginBottom: 24
-      }}>
-        <Image
-          source={IMAGE_LOGIN_LOGO}
-          style={{
-            width: 120,
-            height: 120
-          }}
-        />
-        <Text style={{
-            fontSize: 24,
-            color: COLOR_MAIN,
-            marginTop: 36
-          }}
-        >Welcome{' '}
-          <Text style={{
-              fontWeight: '700'
-            }}
-          >
-            Dunga
-          </Text>
-        </Text>
-        <View style={{
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.20,
-          shadowRadius: 1.41,
-          
-          elevation: 2,
+      <React.Fragment>
+        <SafeAreaView style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: 24,
+          width: '100%',
+          height: '100%'
         }}>
-          <TouchableOpacity style={{
-            width: 312,
-            height: 48,
-            marginTop: 140,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: COLOR_WHITE,
-            borderRadius: 26,
-            }}
-          >
-            <Text style={{
-              color: COLOR_TEXT_GOOGLE,
-              fontWeight: '600',
-              fontSize: 16
-            }}>
-              Login with Google
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{
-            width: 312,
-            height: 48,
-            marginTop: 24,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: COLOR_FACEBOOK,
-            borderRadius: 26
+          <View style={{
+            width: '100%',
+            alignItems: 'center'
           }}>
+            <Image
+              source={IMAGE_LOGIN_LOGO}
+              style={{
+                width: 120,
+                height: 120,
+                marginTop: height*0.15
+              }}
+            />
             <Text style={{
-              color: COLOR_WHITE,
-              fontWeight: '600',
-              fontSize: 16
-            }}>
-              Login with Facebook
+                fontSize: 24,
+                color: COLOR_MAIN,
+                marginTop: 36
+              }}
+            >Welcome{' '}
+              <Text style={{
+                  fontWeight: '700'
+                }}
+              >
+                Dunga
+              </Text>
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{
-            width: 312,
-            height: 48,
-            marginTop: 24,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: COLOR_MAIN,
-            borderRadius: 26
+          </View>
+          <View style={{
+            width: '100%',
+            alignItems: 'center'
           }}>
-            <Text style={{
-              color: COLOR_WHITE,
-              fontWeight: '600',
-              fontSize: 16
+            <ButtonComponent
+              width={width - 48}
+              height={48}
+              margin={12}
+              color={COLOR_WHITE}
+              radius={26}
+              shadow={COLOR_WHITE_SHADOW}
+              textcolor={COLOR_TEXT_GOOGLE}
+              text="Login with Google"
+              callback={this.receiveGoogleCallback}
+            />
+            <ButtonComponent
+              width={width - 48}
+              height={48}
+              margin={12}
+              color={COLOR_FACEBOOK}
+              radius={26}
+              shadow={COLOR_FACEBOOK_SHADOW}
+              textcolor={COLOR_WHITE}
+              text="Login with Facebook"
+              callback={this.receiveFacebookCallback}
+            />
+            <ButtonComponent
+              width={width - 48}
+              height={48}
+              margin={12}
+              color={COLOR_MAIN}
+              radius={26}
+              shadow={COLOR_MAIN_SHADOW}
+              textcolor={COLOR_WHITE}
+              text="Login with Email"
+              callback={this.receiveEmailCallback}
+            />
+            <View style={{
+              flexDirection: 'row'
             }}>
-              Login with Email
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <Text style={{
-            fontSize: 16,
-            color: COLOR_MAIN,
-            marginTop: 24
-          }}
-        >
-          Don't have an account?{' '}
-          <Text style={{
-              fontSize: 16,
-              color: COLOR_MAIN,
-              marginTop: 24,
-              fontWeight: '600',
-              textDecorationLine: 'underline'
-          }} 
-          onPress={() => {
-            this.props.navigation.navigate('Register');
-          }}>
-            Register
-          </Text>
-        </Text>
-      </View>
+              <Text style={{
+                  fontSize: 12,
+                  color: COLOR_MAIN,
+                  marginTop: 24
+                }}
+              >
+                Don't have an account?{' '}
+              </Text>
+              <TouchableHighlight
+                onPress={() => this.renderRegisterModal()}
+                underlayColor={COLOR_TRANSPARENT}
+              >
+                <Text style={{
+                  fontSize: 12,
+                  color: COLOR_MAIN,
+                  marginTop: 24,
+                  fontWeight: '600',
+                  textDecorationLine: 'underline'
+                }}>
+                  Make Account
+                </Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </SafeAreaView>
+        {
+          isVisibleRegister ? <ModalComponent isVisible={true} renderItem={this.renderRegister} /> : null
+        }
+        {
+          isVisibleLogin ? <ModalComponent isVisible={true} renderItem={this.renderRegister} /> : null
+        }
+      </React.Fragment>
     )
   }
 }
