@@ -11,3 +11,4 @@ export const COLOR_MODAL_BAR = '#efefef';
 export const COLOR_INPUT_BORDER = '#f5f5f5';
 export const COLOR_INPUT_PLACEHOLDER = '#9a9a9a';
 export const COLOR_INPUT_BUTTON = '#ff3c7829';
+export const COLOR_LOGIN_TEXT = '#7b7b7b';

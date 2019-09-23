@@ -19,13 +19,6 @@ class ModalComponent extends React.Component{
     })
   }
 
-  //  getDerivedStateFromProps = (props, state) => { // nextProps, prevState
-  //   const { isVisible } = props;
-  //   this.setState({
-  //     isVisible: isVisible
-  //   })
-  // }
-
   returnIsVisible = () => {
     const { isVisible } = this.state
     this.setState({

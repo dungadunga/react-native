@@ -3,8 +3,7 @@ import {
   SafeAreaView,
   View,
   Text,
-  TouchableOpacity,
-  TextInput
+  TouchableHighlight,
 } from 'react-native'
 
 import InputComponent from '../components/Input'
@@ -15,32 +14,28 @@ import {
   COLOR_MODAL_BAR,
   COLOR_MAIN,
   COLOR_MAIN_SHADOW,
+  COLOR_TRANSPARENT,
+  COLOR_LOGIN_TEXT,
 } from '../constants/color'
 import { width, height } from '../constants/size'
 
-class RegisterScreen extends React.Component{
+class EmailLoginScreen extends React.Component{
   constructor(props) {
     super(props)
 
     this.recevieEmailCallback = this.recevieEmailCallback.bind(this)
     this.receviePasswordCallback = this.receviePasswordCallback.bind(this)
-    this.recevieRePasswordCallback = this.recevieRePasswordCallback.bind(this)
-    this.receviePhoneCallback = this.receviePhoneCallback.bind(this)
-    this.recevieVerificationCallback = this.recevieVerificationCallback.bind(this)
-    this.onMakeAccount = this.onMakeAccount.bind(this)
+    this.onSignIn = this.onSignIn.bind(this)
   }
 
   state = {
     email: '',
     password: '',
-    repassword: '',
-    phone: '',
-    verification: ''
   }
 
   recevieEmailCallback = (data) => {
     this.setState({
-      email: text
+      email: data
     })
   }
   
@@ -50,29 +45,13 @@ class RegisterScreen extends React.Component{
     })
   }
 
-  recevieRePasswordCallback = (data) => {
-    this.setState({
-      repassword: data
-    })
-  }
-
-  receviePhoneCallback = (data) => {
-    this.setState({
-      phone: data
-    })
-  }
-
-  recevieVerificationCallback = (data) => {
-    this.setState({
-      verification: data
-    })
-  }
-
-  onMakeAccount = () => {
+  onSignIn = () => {
     console.log(this.state)
   }
   
   render() {
+    const { renderRegister } = this.props
+    
     return (
       <SafeAreaView style={{
         width: '100%',
@@ -107,7 +86,6 @@ class RegisterScreen extends React.Component{
               flexDirection: 'row',
               justifyContent: 'space-between',
               width: '100%',
-              // marginTop: (height-24)*0.1,
               marginBottom: 4
             }}>
               <View/>
@@ -117,7 +95,7 @@ class RegisterScreen extends React.Component{
                 color: COLOR_MAIN,
                 fontWeight: '700'
               }}>
-                Make Account
+                Sign In
               </Text>
             </View>
             <InputComponent
@@ -132,26 +110,33 @@ class RegisterScreen extends React.Component{
               type="password"
               callback={this.receviePasswordCallback}
             />
-            <InputComponent
-              label="Retype Password"
-              placeholder="Your Password here."
-              type="password"
-              callback={this.recevieRePasswordCallback}
-            />
-            <InputComponent
-              label="Phone"
-              placeholder="Your Phone Number here."
-              type="tel"
-              button="Quote"
-              callback={this.receviePhoneCallback}
-            />
-            <InputComponent
-              label="Phone Quotation"
-              placeholder="Quotation Number here."
-              type="off"
-              button="Confirm"
-              callback={this.recevieVerificationCallback}
-            />
+            <View style={{
+              width: '100%',
+              flexDirection: 'row',
+              justifyContent: 'flex-end'
+            }}>
+              <Text style={{
+                  fontSize: 12,
+                  color: COLOR_LOGIN_TEXT,
+                  marginTop: 24
+                }}
+              >
+                Don't have an account?{' '}
+              </Text>
+              <TouchableHighlight
+                onPress={() => renderRegister()}
+                underlayColor={COLOR_TRANSPARENT}
+              >
+                <Text style={{
+                  fontSize: 12,
+                  color: COLOR_MAIN,
+                  marginTop: 24,
+                  fontWeight: '600'
+                }}>
+                  Create Account
+                </Text>
+              </TouchableHighlight>
+            </View>
           </View>
           <View>
             <ButtonComponent
@@ -162,8 +147,8 @@ class RegisterScreen extends React.Component{
               radius={24}
               shadow={COLOR_MAIN_SHADOW}
               textcolor={COLOR_WHITE}
-              text="Make Account"
-              callback={this.onMakeAccount}
+              text="Sign In"
+              callback={this.onSignIn}
             />
           </View>
         </View>
@@ -172,4 +157,4 @@ class RegisterScreen extends React.Component{
   }
 }
 
-export default RegisterScreen;
+export default EmailLoginScreen;
