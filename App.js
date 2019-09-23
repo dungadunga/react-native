@@ -6,26 +6,14 @@
  * @flow
  */
 
-import React, {Fragment} from 'react';
+import React from 'react';
 import { Provider } from 'mobx-react'
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-import {
-  NavigationScreenOptions,
-  NavigationScreenProp,
   createAppContainer,
   createSwitchNavigator,
-  NavigationTabScreenOptions
 } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack'
 import LoginScreen from './src/screens/LoginScreen'
-import RegisterScreen from './src/screens/RegisterScreen'
 import HomeScreen from './src/screens/HomeScreen'
 import stores from './src/stores';
 
@@ -81,7 +69,6 @@ class App extends React.Component{
 const LoginStack = createStackNavigator(
   {
     Login: { screen: LoginScreen },
-    Register : { screen: RegisterScreen }
   },
   {
     defaultNavigationOptions: ({
