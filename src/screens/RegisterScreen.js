@@ -40,7 +40,7 @@ class RegisterScreen extends React.Component{
 
   recevieEmailCallback = (data) => {
     this.setState({
-      email: text
+      email: data
     })
   }
   
@@ -107,7 +107,6 @@ class RegisterScreen extends React.Component{
               flexDirection: 'row',
               justifyContent: 'space-between',
               width: '100%',
-              // marginTop: (height-24)*0.1,
               marginBottom: 4
             }}>
               <View/>
