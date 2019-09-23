@@ -36,6 +36,7 @@ class LoginScreen extends React.Component{
     this.receiveGoogleCallback = this.receiveGoogleCallback.bind(this)
     this.receiveFacebookCallback = this.receiveFacebookCallback.bind(this)
     this.receiveEmailCallback = this.receiveEmailCallback.bind(this)
+    this.onSignIn = this.onSignIn.bind(this)
   }
 
   state = {
@@ -44,7 +45,7 @@ class LoginScreen extends React.Component{
   }
 
   renderRegister = () => <RegisterScreen />
-  renderLogin = () => <EmailLoginScreen renderRegister={this.renderRegisterModal} />
+  renderLogin = () => <EmailLoginScreen renderRegister={this.renderRegisterModal} onSignIn={this.onSignIn} />
 
   renderRegisterModal = () => {
     this.setState({
@@ -70,6 +71,10 @@ class LoginScreen extends React.Component{
     }, () => this.setState({
       isVisibleLogin: true
     }))
+  }
+
+  onSignIn = () => {
+    
   }
   
   render() {
