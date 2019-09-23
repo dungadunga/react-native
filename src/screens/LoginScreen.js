@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 
 import RegisterScreen from './RegisterScreen'
+import EmailLoginScreen from './EmailLoginScreen'
 
 import ModalComponent from '../components/Modal'
 import ButtonComponent from '../components/Button'
@@ -43,14 +44,16 @@ class LoginScreen extends React.Component{
   }
 
   renderRegister = () => <RegisterScreen />
-  renderLogin = () =>  <RegisterScreen />
+  renderLogin = () => <EmailLoginScreen renderRegister={this.renderRegisterModal} />
 
   renderRegisterModal = () => {
     this.setState({
       isVisibleRegister: false
     }, () => this.setState({
-      isVisibleRegister: true
-    }))
+      isVisibleRegister: true,
+    }, () => this.setState({
+      isVisibleLogin: false
+    })))
   }
 
   receiveGoogleCallback = (event) => {
@@ -144,39 +147,13 @@ class LoginScreen extends React.Component{
               text="Login with Email"
               callback={this.receiveEmailCallback}
             />
-            <View style={{
-              flexDirection: 'row'
-            }}>
-              <Text style={{
-                  fontSize: 12,
-                  color: COLOR_MAIN,
-                  marginTop: 24
-                }}
-              >
-                Don't have an account?{' '}
-              </Text>
-              <TouchableHighlight
-                onPress={() => this.renderRegisterModal()}
-                underlayColor={COLOR_TRANSPARENT}
-              >
-                <Text style={{
-                  fontSize: 12,
-                  color: COLOR_MAIN,
-                  marginTop: 24,
-                  fontWeight: '600',
-                  textDecorationLine: 'underline'
-                }}>
-                  Make Account
-                </Text>
-              </TouchableHighlight>
-            </View>
           </View>
         </SafeAreaView>
         {
           isVisibleRegister ? <ModalComponent isVisible={true} renderItem={this.renderRegister} /> : null
         }
         {
-          isVisibleLogin ? <ModalComponent isVisible={true} renderItem={this.renderRegister} /> : null
+          isVisibleLogin ? <ModalComponent isVisible={true} renderItem={this.renderLogin} /> : null
         }
       </React.Fragment>
     )
