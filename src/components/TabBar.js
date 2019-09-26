@@ -14,7 +14,7 @@ class TabBarComponent extends React.Component{
         {
           isFocused
           ? <View style={{
-              width: (width - 24) / 4,
+              width: (width - 48) / 4,
               height: getHeight(36),
               flexDirection: 'row',
               backgroundColor: COLOR_TRANS_MAIN,
@@ -22,6 +22,7 @@ class TabBarComponent extends React.Component{
               justifyContent: 'center',
               alignItems: 'center',
               marginHorizontal: 24,
+              paddingHorizontal: 16
             }}>
               <Image
                 source={focusedSource}
@@ -38,7 +39,13 @@ class TabBarComponent extends React.Component{
               }}>{label}</Text>
             </View>
             : 
-            <View>
+            <View style={{
+              width: (width - 48) / 4,
+              marginHorizontal: 24,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
               <Image
                 source={unfocusedSource}
                 style={{

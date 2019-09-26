@@ -26,7 +26,8 @@ class CardAtomComponent extends React.Component{
       heading,
       isStatus,
       status,
-      buttonIconHeight
+      buttonIconHeight,
+      callback
     } = this.props;
     return (
       <View style={{
@@ -77,7 +78,9 @@ class CardAtomComponent extends React.Component{
           color: COLOR_TEXT,
           marginTop: 8
         }}>1hours ago</Text>
-        <TouchableOpacity style={{
+        <TouchableOpacity
+          onPress={ () => callback()}
+          style={{
           backgroundColor: COLOR_TRANS_MAIN,
           width: getWidth(124),
           height: getHeight(22),
