@@ -7,15 +7,27 @@
  */
 
 import React from 'react';
+import { View, Image } from 'react-native'
 import { Provider } from 'mobx-react'
 import {
   createAppContainer,
   createSwitchNavigator,
 } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack'
+import { BottomTabBar } from 'react-navigation-tabs'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+
 import LoginScreen from './src/screens/LoginScreen'
 import HomeScreen from './src/screens/HomeScreen'
+import MusicScreen from './src/screens/MusicScreen'
+import DiaryScreen from './src/screens/DiaryScreen'
+import MypageScreen from './src/screens/MypageScreen'
+
+import TabBarComponent from './src/components/TabBar'
+
 import stores from './src/stores';
+import { COLOR_WHITE, COLOR_BLACK } from './src/constants/color';
+import { IMAGE_HOME_ACTIVE, IMAGE_MUSIC_ACTIVE, IMAGE_DIARY_ACTIVE, IMAGE_MYPAGE_ACTIVE, IMAGE_DIARY_INACTIVE, IMAGE_HOME_INACTIVE, IMAGE_MUSIC_INACTIVE, IMAGE_MYPAGE_INACTIVE } from './src/constants/image';
 
 class App extends React.Component{
   componentDidMount = async () => {
@@ -104,9 +116,9 @@ const HomeStack = createStackNavigator(
   }
 )
 
-const MainStack = createStackNavigator(
+const MusicStack = createStackNavigator(
   {
-    Home: { screen: HomeStack },
+    Music: { screen: MusicScreen }
   },
   {
     defaultNavigationOptions: ({
@@ -116,17 +128,129 @@ const MainStack = createStackNavigator(
         shadowOffset: { height: 0, width: 0 },
         shadowOpacity: 0,
         shadowRadius: 0,
-        height: 0,
-        backgroundColor: 'transparent',
+        backgroundColor: '#fff',
         shadowColor: "transparent"
       }
     })
   }
 )
 
+const DiaryStack = createStackNavigator(
+  { 
+    Diary: { screen: DiaryScreen }
+  },
+  {
+    defaultNavigationOptions: ({
+      headerStyle: {
+        height: 0,
+        elevation: 0,
+        shadowOffset: { height: 0, width: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        backgroundColor: '#fff',
+        shadowColor: "transparent"
+      }
+    })
+  }
+)
+
+const MypageStack = createStackNavigator(
+  { 
+    Diary: { screen: MypageScreen }
+  },
+  {
+    defaultNavigationOptions: ({
+      headerStyle: {
+        height: 0,
+        elevation: 0,
+        shadowOffset: { height: 0, width: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        backgroundColor: '#fff',
+        shadowColor: "transparent"
+      }
+    })
+  }
+)
+
+const MainStack = createMaterialBottomTabNavigator(
+  {
+    Home: {
+      screen: HomeStack,
+      navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          const { routeName } = navigation.state;
+          return (
+            <TabBarComponent
+              focusedSource={IMAGE_HOME_ACTIVE}
+              label='Home'
+              unfocusedSource={IMAGE_HOME_INACTIVE}
+              isFocused={focused} />
+          )
+        },
+        title: '',
+      })
+    },
+    Music: {
+      screen: MusicStack,
+      navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          const { routeName } = navigation.state;
+          return (
+            <TabBarComponent
+              focusedSource={IMAGE_MUSIC_ACTIVE}
+              unfocusedSource={IMAGE_MUSIC_INACTIVE}
+              label='Music'
+              isFocused={focused} />
+          )
+        },
+        title: '',
+      })
+    },
+    Diary: {
+      screen: DiaryStack,
+      navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          const { routeName } = navigation.state;
+          return (
+            <TabBarComponent
+              focusedSource={IMAGE_DIARY_ACTIVE}
+              unfocusedSource={IMAGE_DIARY_INACTIVE}
+              label='Dairy'
+              isFocused={focused} />
+          )
+        },
+        title: '',
+      })
+    },
+    Mypage: {
+      screen: MypageStack,
+      navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          return (
+            <TabBarComponent
+              focusedSource={IMAGE_MYPAGE_ACTIVE}
+              unfocusedSource={IMAGE_MYPAGE_INACTIVE}
+              label='Mypage'
+              isFocused={focused} />
+          )
+        },
+        title: '',
+      })
+    },
+  },
+  {
+    defaultNavigationOptions: ({
+      activeColor: COLOR_BLACK,
+      inactiveColor: COLOR_BLACK,
+      barStyle: { backgroundColor: COLOR_WHITE }
+  })
+  }
+)
+
 const MainSwitch = createSwitchNavigator({
   Login: LoginStack,
-  Home: MainStack
+  Main: MainStack
 })
 
 const AppContainer = createAppContainer(MainSwitch);
