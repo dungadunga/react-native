@@ -2,7 +2,8 @@ import React from 'react'
 import {
   SafeAreaView,
   View,
-  ScrollView
+  ScrollView,
+  CameraRoll
 } from 'react-native'
 
 import TitleComponent from '../components/Titie'
@@ -12,7 +13,28 @@ import CardDiaryComponent from '../components/CardDiary'
 import { width } from '../constants/size'
 
 class DiaryScreen extends React.Component{
+  constructor(props) {
+    super(props)
+  }
+  state = {
+    photos: []
+  }
+
+  componentDidMount = () => {
+    CameraRoll.getPhotos({
+      first: 500,
+      assetType: 'Photos',
+    })
+    .then(r => {
+      this.setState({ photos: r.edges });
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+  }
+
   render() {
+    const { photos } = this.state;
     return (
       <SafeAreaView>
         <TitleComponent title="Diary" isSearch={true} />
@@ -45,26 +67,11 @@ class DiaryScreen extends React.Component{
               flexWrap: 'wrap',
             }}
           >
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
-            <DiaryComponent />
+            {photos.map((photo, i) => {
+              return (
+                <DiaryComponent key={i} source={photo.node.image.uri}/>
+              );
+            })}
           </View>
         </ScrollView>
       </SafeAreaView>

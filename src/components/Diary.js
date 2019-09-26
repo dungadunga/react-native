@@ -1,15 +1,15 @@
 import React from 'react'
 import { ImageBackground, View, Text } from 'react-native'
 
-import { IMAGE_CHECK_EXAMPLE } from '../constants/image'
 import { COLOR_WHITE, COLOR_TEXT_GOOGLE } from '../constants/color'
 import { getWidth, getHeight, width } from '../constants/size'
 
 class DiaryComponent extends React.Component{
   render() {
+    const { source } = this.props;
     return (
       <ImageBackground
-        source={IMAGE_CHECK_EXAMPLE}
+        source={{ uri: source }}
         style={{
           width: (width - 8) / 4,
           height: (width - 8) / 4,
