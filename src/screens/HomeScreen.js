@@ -9,6 +9,7 @@ import { LineChart } from 'react-native-svg-charts'
 
 import StatusScreen from './StatusScreen'
 import CheckScreen from './CheckScreen'
+import CryingScreen from './CryingScreen'
 
 import TitleComponent from '../components/Titie'
 import CardAtomComponent from '../components/CardAtom'
@@ -32,12 +33,14 @@ class HomeScreen extends React.Component{
     this.renderStatus = this.renderStatus.bind(this)
     this.onClickCheck = this.onClickCheck.bind(this)
     this.onClickCheckFalse = this.onClickCheckFalse.bind(this)
+    this.onCrying = this.onCrying.bind(this)
   }
 
   state = {
     isStatus: false,
     isCheck: false,
-    data:  [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
+    data: [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80],
+    isCrying: false
   }
 
   static navigationOptions = ({
@@ -45,7 +48,8 @@ class HomeScreen extends React.Component{
   })
   
   renderStatus = () => <StatusScreen />
-  renderCheck = () => <CheckScreen onClick={this.onClickCheckFalse}/>
+  renderCheck = () => <CheckScreen onClick={this.onClickCheckFalse} />
+  renderCrying = () => <CryingScreen />
 
   onClickStatus = () => {
     this.setState({
@@ -63,6 +67,14 @@ class HomeScreen extends React.Component{
     }))
   }
 
+  onCrying = () => {
+    this.setState({
+      isCrying: false
+    }, () => this.setState({
+      setState: true
+    }))
+  }
+
   onClickCheckFalse = () => {
     this.setState({
       isCheck: false
@@ -70,7 +82,7 @@ class HomeScreen extends React.Component{
   }
 
   render() {
-    const { isStatus, isCheck, data } = this.state;
+    const { isStatus, isCheck, isCrying, data } = this.state;
     return (
       <React.Fragment>
         <SafeAreaView style={{
@@ -93,7 +105,7 @@ class HomeScreen extends React.Component{
               isStatus={true}
               status='Crying'
               buttonIconHeight={getHeight(12)}
-              callback={this.onClickStatus}
+              callback={this.renderCrying}
             />
             <CardAtomComponent
               icon={IMAGE_CARD_DEAD}
@@ -198,6 +210,7 @@ class HomeScreen extends React.Component{
         </SafeAreaView>
         {isStatus ? <ModalComponent isVisible={true} renderItem={this.renderStatus} /> : null}
         {isCheck ? <ModalComponent isVisible={true} renderItem={this.renderCheck} /> : null}
+        {isCrying ? <ModalComponent isVisible={true} renderItem={this.renderCrying} /> : null}
       </React.Fragment>
     )
   }

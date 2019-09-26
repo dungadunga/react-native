@@ -2,15 +2,16 @@ import React from 'react'
 import {
   SafeAreaView,
   View,
-  ScrollView,
-  CameraRoll
+  ScrollView
 } from 'react-native'
+import CameraRollPicker from 'react-native-camera-roll-picker';
 
 import TitleComponent from '../components/Titie'
 import DiaryComponent from '../components/Diary'
 import CardDiaryComponent from '../components/CardDiary'
 
 import { width } from '../constants/size'
+import { IMAGE_CHECK_EXAMPLE } from '../constants/image';
 
 class DiaryScreen extends React.Component{
   constructor(props) {
@@ -21,16 +22,16 @@ class DiaryScreen extends React.Component{
   }
 
   componentDidMount = () => {
-    CameraRoll.getPhotos({
-      first: 500,
-      assetType: 'Photos',
-    })
-    .then(r => {
-      this.setState({ photos: r.edges });
-    })
-    .catch((err) => {
-      console.log(err)
-    });
+    // CameraRoll.getPhotos({
+    //   first: 500,
+    //   assetType: 'Photos',
+    // })
+    // .then(r => {
+    //   this.setState({ photos: r.edges });
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // });
   }
 
   render() {
@@ -67,11 +68,22 @@ class DiaryScreen extends React.Component{
               flexWrap: 'wrap',
             }}
           >
-            {photos.map((photo, i) => {
-              return (
-                <DiaryComponent key={i} source={photo.node.image.uri}/>
-              );
-            })}
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
+            <DiaryComponent source={IMAGE_CHECK_EXAMPLE}/>
           </View>
         </ScrollView>
       </SafeAreaView>

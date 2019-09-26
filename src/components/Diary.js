@@ -9,7 +9,7 @@ class DiaryComponent extends React.Component{
     const { source } = this.props;
     return (
       <ImageBackground
-        source={{ uri: source }}
+        source={source }
         style={{
           width: (width - 8) / 4,
           height: (width - 8) / 4,

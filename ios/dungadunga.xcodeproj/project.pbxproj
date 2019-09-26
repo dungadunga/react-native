@@ -37,6 +37,13 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "dungadunga-tvOS";
 		};
+		BBE0DBEA233D09A500A12780 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBE0DBE6233D09A500A12780 /* RCTCameraRoll.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
+			remoteInfo = RCTCameraRoll;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +68,7 @@
 		71707D958A6D89108B83E02F /* Pods-dungadunga.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dungadunga.release.xcconfig"; path = "Target Support Files/Pods-dungadunga/Pods-dungadunga.release.xcconfig"; sourceTree = "<group>"; };
 		8D14B2010F75893E8D022F0F /* Pods-dungadunga-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dungadunga-tvOS.release.xcconfig"; path = "Target Support Files/Pods-dungadunga-tvOS/Pods-dungadunga-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		9B7EFE34DFBF92009D4A09D6 /* libPods-dungadunga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dungadunga.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBE0DBE6233D09A500A12780 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
 		C4806837713859459DB523EF /* libPods-dungadungaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dungadungaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAEAE1B21B1E1903CE042543 /* Pods-dungadungaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dungadungaTests.release.xcconfig"; path = "Target Support Files/Pods-dungadungaTests/Pods-dungadungaTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE120B777B44A9E7C415D685 /* Pods-dungadunga-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dungadunga-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-dungadunga-tvOSTests/Pods-dungadunga-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BBE0DBE6233D09A500A12780 /* RCTCameraRoll.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -178,6 +187,14 @@
 				00E356EE1AD99517003FC87E /* dungadungaTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* dungadunga-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* dungadunga-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBE0DBE7233D09A500A12780 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BBE0DBEB233D09A500A12780 /* libRCTCameraRoll.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -321,6 +338,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BBE0DBE7233D09A500A12780 /* Products */;
+					ProjectRef = BBE0DBE6233D09A500A12780 /* RCTCameraRoll.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* dungadunga */,
@@ -330,6 +353,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BBE0DBEB233D09A500A12780 /* libRCTCameraRoll.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCameraRoll.a;
+			remoteRef = BBE0DBEA233D09A500A12780 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
