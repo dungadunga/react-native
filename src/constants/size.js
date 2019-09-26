@@ -2,13 +2,13 @@ import { Dimensions } from 'react-native';
 
 export const { width, fontScale, height } = Dimensions.get('window');
 
-export const getFontSize = (size: number) => {
+export const getFontSize = (size) => {
   switch (fontScale.toFixed(1)) {
     case '0.8':
       return size * (10 / 8);
     case '0.9':
       return size * (10 / 9);
-    case '1':
+    case '1': ㅇ
       return size * (10 / 10);
     case '1.1':
       return size * (10 / 11);
@@ -23,8 +23,8 @@ export const getFontSize = (size: number) => {
   }
 };
 
-export const getWidth = (size: number) => size * (width / BaseWidth);
-export const getHeight = (size: number) => size * (height / BaseHeight);
+export const getWidth = (size) => size * (width / BaseWidth);
+export const getHeight = (size) => size * (height / BaseHeight);
 
 export const BaseWidth = 360;
 export const BaseHeight = 640;
