@@ -4,8 +4,6 @@ import {
   SafeAreaView,
   Image,
   Text,
-  TouchableOpacity,
-  TouchableHighlight
 } from 'react-native'
 
 import RegisterScreen from './RegisterScreen'
