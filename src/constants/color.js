@@ -14,3 +14,6 @@ export const COLOR_INPUT_BUTTON = '#ff3c7829';
 export const COLOR_LOGIN_TEXT = '#7b7b7b';
 export const COLOR_TEXT = "#290913";
 export const COLOR_TRANS_MAIN = "#ffdfe9";
+export const COLOR_CARD_BACK = "#ffeff4";
+export const COLOR_CARD_TEXT = "#a8a8a8";
+export const COLOR_TRANS_BLACK = "#000000E6"
