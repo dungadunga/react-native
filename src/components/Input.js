@@ -13,6 +13,7 @@ import {
   COLOR_MAIN,
   COLOR_INPUT_BUTTON
 } from '../constants/color'
+import { getWidth, getHeight } from '../constants/size'
 
 class InputComponent extends React.Component{
   constructor(props) {
@@ -78,8 +79,8 @@ class InputComponent extends React.Component{
                 <TouchableOpacity style={{
                   position: 'absolute',
                   right: 8,
-                  width: 64,
-                  height: 28,
+                  width: getWidth(64),
+                  height: getHeight(28),
                   backgroundColor: COLOR_INPUT_BUTTON,
                   borderRadius: 14,
                   justifyContent: 'center',
