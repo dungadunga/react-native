@@ -21,11 +21,10 @@ import {
   COLOR_FACEBOOK,
   COLOR_WHITE_SHADOW,
   COLOR_WHITE,
-  COLOR_TRANSPARENT,
   COLOR_FACEBOOK_SHADOW,
   COLOR_MAIN_SHADOW
 } from '../constants/color'
-import { width, height } from '../constants/size'
+import { width, height, getWidth, getHeight } from '../constants/size'
 
 class LoginScreen extends React.Component{
   constructor(props) {
@@ -36,16 +35,23 @@ class LoginScreen extends React.Component{
     this.receiveGoogleCallback = this.receiveGoogleCallback.bind(this)
     this.receiveFacebookCallback = this.receiveFacebookCallback.bind(this)
     this.receiveEmailCallback = this.receiveEmailCallback.bind(this)
-    this.onSignIn = this.onSignIn.bind(this)
   }
 
   state = {
     isVisibleRegister: false,
     isVisibleLogin: false
   }
+  
+  static navigationOptions = ({
+    header: null,
+  })
 
   renderRegister = () => <RegisterScreen />
-  renderLogin = () => <EmailLoginScreen renderRegister={this.renderRegisterModal} onSignIn={this.onSignIn} />
+  renderLogin = () =>
+    <EmailLoginScreen
+      renderRegister={this.renderRegisterModal}
+      navigation={this.props.navigation}
+    />
 
   renderRegisterModal = () => {
     this.setState({
@@ -72,10 +78,6 @@ class LoginScreen extends React.Component{
       isVisibleLogin: true
     }))
   }
-
-  onSignIn = () => {
-    
-  }
   
   render() {
     const { isVisibleLogin, isVisibleRegister } = this.state;
@@ -96,8 +98,8 @@ class LoginScreen extends React.Component{
             <Image
               source={IMAGE_LOGIN_LOGO}
               style={{
-                width: 120,
-                height: 120,
+                width: getWidth(120),
+                height: getHeight(120),
                 marginTop: height*0.15
               }}
             />

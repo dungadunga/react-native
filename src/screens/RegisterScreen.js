@@ -16,7 +16,7 @@ import {
   COLOR_MAIN,
   COLOR_MAIN_SHADOW,
 } from '../constants/color'
-import { width, height } from '../constants/size'
+import { width, height, getWidth, getHeight } from '../constants/size'
 
 class RegisterScreen extends React.Component{
   constructor(props) {
@@ -93,8 +93,8 @@ class RegisterScreen extends React.Component{
           <View style={{
             position: 'absolute',
             top: 16,
-            width: 28,
-            height: 4,
+            width: getWidth(28),
+            height: getHeight(4),
             borderRadius: 1,
             backgroundColor: COLOR_MODAL_BAR
           }} />

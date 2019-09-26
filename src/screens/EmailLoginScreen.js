@@ -17,7 +17,7 @@ import {
   COLOR_TRANSPARENT,
   COLOR_LOGIN_TEXT,
 } from '../constants/color'
-import { width, height } from '../constants/size'
+import { width, height, getWidth, getHeight } from '../constants/size'
 
 class EmailLoginScreen extends React.Component{
   constructor(props) {
@@ -47,6 +47,8 @@ class EmailLoginScreen extends React.Component{
 
   onSignIn = () => {
     console.log(this.state)
+    const { navigation } = this.props;
+    navigation.navigate('Main')
   }
   
   render() {
@@ -72,8 +74,8 @@ class EmailLoginScreen extends React.Component{
           <View style={{
             position: 'absolute',
             top: 16,
-            width: 28,
-            height: 4,
+            width: getWidth(28),
+            height: getHeight(4),
             borderRadius: 1,
             backgroundColor: COLOR_MODAL_BAR
           }} />
