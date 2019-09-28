@@ -36,12 +36,56 @@ class MypageScreen extends React.Component{
           }}>
             <InfoComponent title='Email' data='gtg7784@naver.com'/>
             <InfoComponent title='Phone' data='01039018488'/>
-            <InfoComponent title='Email' data='7784rhxorjs!' />
+            <InfoComponent title='Email' data='00000000' />
           </View>
         </View>
         <View style={{
           marginBottom: 16
         }}>
+          <ButtonComponent
+            width={width - 48}
+            height={48}
+            margin={12}
+            color={COLOR_MAIN}
+            radius={26}
+            shadow={COLOR_MAIN_SHADOW}
+            textcolor={COLOR_WHITE}
+            text="Volume Up"
+            callback={this.onClickLogout}
+          />
+          <ButtonComponent
+            width={width - 48}
+            height={48}
+            margin={12}
+            color={COLOR_MAIN}
+            radius={26}
+            shadow={COLOR_MAIN_SHADOW}
+            textcolor={COLOR_WHITE}
+            text="Volume Down"
+            callback={this.onClickLogout}
+          />
+          <ButtonComponent
+            width={width - 48}
+            height={48}
+            margin={12}
+            color={COLOR_MAIN}
+            radius={26}
+            shadow={COLOR_MAIN_SHADOW}
+            textcolor={COLOR_WHITE}
+            text="Play Music"
+            callback={this.onClickLogout}
+          />
+          <ButtonComponent
+            width={width - 48}
+            height={48}
+            margin={12}
+            color={COLOR_MAIN}
+            radius={26}
+            shadow={COLOR_MAIN_SHADOW}
+            textcolor={COLOR_WHITE}
+            text="Wave It"
+            callback={this.onClickLogout}
+          />
             <ButtonComponent
               width={width - 48}
               height={48}

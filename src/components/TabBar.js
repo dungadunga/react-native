@@ -41,6 +41,7 @@ class TabBarComponent extends React.Component{
             : 
             <View style={{
               width: (width - 48) / 4,
+              height: getHeight(36),
               marginHorizontal: 24,
               flexDirection: 'row',
               justifyContent: 'center',

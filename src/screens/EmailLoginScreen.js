@@ -45,7 +45,7 @@ class EmailLoginScreen extends React.Component{
     })
   }
 
-  onSignIn = () => {
+  onSignIn = async () => {
     console.log(this.state)
     const { navigation } = this.props;
     navigation.navigate('Main')

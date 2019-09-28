@@ -44,7 +44,9 @@ class LoginScreen extends React.Component{
     header: null,
   })
 
-  renderRegister = () => <RegisterScreen />
+  renderRegister = () => <RegisterScreen callback={() => this.setState({
+    isVisibleRegister: false
+  })}/>
   renderLogin = () =>
     <EmailLoginScreen
       renderRegister={this.renderRegisterModal}

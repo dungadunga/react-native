@@ -13,5 +13,5 @@ export const IMAGE_VIDEO = require('../../assets/drawable-xxxhdpi/vidio_cam.png'
 export const IMAGE_TEMPERATURE = require('../../assets/drawable-xxxhdpi/group_639.png')
 export const IMAGE_HUMID = require('../../assets/drawable-xxxhdpi/humidity.png')
 export const IMAGE_ADD = require('../../assets/drawable-xxxhdpi/add.png')
-export const IMAGE_CHECK_EXAMPLE = require('../../assets/IMG_5261.png')
+export const IMAGE_CHECK_EXAMPLE = require('../../assets/IMG_5268.png')
 export const IMAGE_X = require('../../assets/x.png')

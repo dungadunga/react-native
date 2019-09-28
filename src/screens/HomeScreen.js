@@ -103,7 +103,7 @@ class HomeScreen extends React.Component{
               buttonContent='Learn how to care'
               heading='Baby status'
               isStatus={true}
-              status='Crying'
+              status='Not Found'
               buttonIconHeight={getHeight(12)}
               callback={this.renderCrying}
             />

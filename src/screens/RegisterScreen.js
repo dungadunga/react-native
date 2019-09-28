@@ -73,6 +73,7 @@ class RegisterScreen extends React.Component{
   }
   
   render() {
+    const { callback } = this.props;
     return (
       <SafeAreaView style={{
         width: '100%',
@@ -162,7 +163,7 @@ class RegisterScreen extends React.Component{
               shadow={COLOR_MAIN_SHADOW}
               textcolor={COLOR_WHITE}
               text="Make Account"
-              callback={this.onMakeAccount}
+              callback={() => callback()}
             />
           </View>
         </View>
